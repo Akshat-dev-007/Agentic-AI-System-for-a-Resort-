@@ -241,4 +241,15 @@ User: Thanks
 Bot: You're welcome! If you have any other questions or need assistance, feel free to ask. Enjoy your day!
 User: 102 room service completed
 Bot: ✅ Your room service request for room 102 has been marked as COMPLETED. Thank you for confirming!
- 
+```
+
+## A glimpse of Admin Dashboard
+<img width="1791" height="774" alt="image" src="https://github.com/user-attachments/assets/720cb7a5-9149-4da2-b079-c32959a50595" />
+<img width="1763" height="776" alt="image" src="https://github.com/user-attachments/assets/3bda4b22-f466-4a39-8aef-0c78bb354003" />
+
+## A glimpse of chat-ui
+<img width="1476" height="751" alt="image" src="https://github.com/user-attachments/assets/0162ac4d-4dc0-49c5-a114-749083967210" />
+
+
+
+
