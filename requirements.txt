@@ -4,15 +4,16 @@
 Flask>=3.0,<4.0
 
 # =========================
-# LangChain Core
+# LangChain + LangGraph
 # =========================
-langchain>=0.2.10,<0.3.0
-langchain-core>=0.2.25,<0.3.0
+langchain>=0.3.0,<0.4.0
+langchain-core>=0.3.0,<0.4.0
+langchain-openai>=0.2.0,<0.4.0
+langgraph>=0.2.0,<0.4.0
 
 # =========================
-# LLM Providers
+# OpenAI SDK
 # =========================
-langchain-openai>=0.1.22,<0.2.0
 openai>=1.30.0,<2.0.0
 
 # =========================
@@ -37,3 +38,8 @@ openpyxl>=3.1,<4.0
 # Dashboard
 # =========================
 streamlit>=1.35,<2.0
+
+# =========================
+# Validation / Schemas
+# =========================
+pydantic>=2.7,<3.0
