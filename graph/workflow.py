@@ -5,28 +5,13 @@ from langgraph.graph import StateGraph, END
 from graph.state import ResortState
 from agents_LG.router_node import router_node
 from agents_LG.restaurant_nodes import restaurant_node
+from agents_LG.reception_nodes import receptionist_node
 
-# OLD handlers (bridge during migration)
-from agents.receptionist_agent import handle_reception_query
+# OLD handler (bridge during migration)
 from agents.room_service_agent import handle_room_service_query
 
 
-# ---------------- Bridge nodes for old agents ----------------
-def reception_bridge_node(state: ResortState) -> ResortState:
-    """
-    Temporary bridge node that calls the old receptionist agent.
-    """
-    response = handle_reception_query(
-        state["user_message"],
-        state["conversation_id"]
-    )
-
-    return {
-        **state,
-        "response": response
-    }
-
-
+# ---------------- Bridge node for old room service ----------------
 def room_service_bridge_node(state: ResortState) -> ResortState:
     """
     Temporary bridge node that calls the old room service agent.
@@ -64,7 +49,7 @@ def build_resort_graph():
 
     workflow.add_node("router", router_node)
     workflow.add_node("restaurant", restaurant_node)
-    workflow.add_node("reception", reception_bridge_node)
+    workflow.add_node("reception", receptionist_node)
     workflow.add_node("room_service", room_service_bridge_node)
 
     workflow.set_entry_point("router")
