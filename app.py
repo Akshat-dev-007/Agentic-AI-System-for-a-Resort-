@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from graph.workflow import resort_graph
+from memory.conversation_store import redis_client
 from memory.conversation_store import get_context, update_context, clear_context
 
 from routes.menu import menu_bp
@@ -21,6 +22,21 @@ def health_check():
         "message": "Resort Agentic AI (LangGraph Hybrid) is running"
     })
 
+# ---------------- Redis Health Check -----------
+@app.route("/health/redis", methods=["GET"])
+def redis_health_check():
+    try:
+        pong = redis_client.ping()
+        return jsonify({
+            "status": "ok",
+            "redis": "connected" if pong else "not responding"
+        })
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "redis": "disconnected",
+            "details": str(e)
+        }), 500
 
 # ---------------- Chat Endpoint ----------------
 @app.route("/chat", methods=["POST"])
