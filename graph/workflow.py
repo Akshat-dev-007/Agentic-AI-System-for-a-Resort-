@@ -6,25 +6,7 @@ from graph.state import ResortState
 from agents_LG.router_node import router_node
 from agents_LG.restaurant_nodes import restaurant_node
 from agents_LG.reception_nodes import receptionist_node
-
-# OLD handler (bridge during migration)
-from agents.room_service_agent import handle_room_service_query
-
-
-# ---------------- Bridge node for old room service ----------------
-def room_service_bridge_node(state: ResortState) -> ResortState:
-    """
-    Temporary bridge node that calls the old room service agent.
-    """
-    response = handle_room_service_query(
-        state["user_message"],
-        state["conversation_id"]
-    )
-
-    return {
-        **state,
-        "response": response
-    }
+from agents_LG.room_service_nodes import room_service_node
 
 
 # ---------------- Conditional Router ----------------
@@ -50,7 +32,7 @@ def build_resort_graph():
     workflow.add_node("router", router_node)
     workflow.add_node("restaurant", restaurant_node)
     workflow.add_node("reception", receptionist_node)
-    workflow.add_node("room_service", room_service_bridge_node)
+    workflow.add_node("room_service", room_service_node)
 
     workflow.set_entry_point("router")
 
