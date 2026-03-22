@@ -10,7 +10,7 @@ from langchain.prompts import ChatPromptTemplate
 
 from graph.state import ResortState
 
-
+# Schema for structured output of intent router llm
 class IntentSchema(BaseModel):
     intent: Literal["RECEPTION", "RESTAURANT", "ROOM_SERVICE"] = Field(
         description="The department best suited to handle the user request"
@@ -50,6 +50,10 @@ def router_node(state: ResortState) -> ResortState:
     )
 
     return {
-        **state,
+        **state, # using unpacking concept of dictionary
         "active_intent": result.intent
     }
+    # other way of returning  
+    # state['active_intent'] = result.intent
+    # return state
+
